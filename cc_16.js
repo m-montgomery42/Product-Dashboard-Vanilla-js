@@ -57,3 +57,8 @@ function displayProducts(products) {
       container.appendChild(productElement); // Append the product element to the container
     });
   }
+
+// Task 5: Reusable Error Handler
+function handleError(error) {
+    console.error("An error occurred:", error.message); // Log the error message in the console
+  }
