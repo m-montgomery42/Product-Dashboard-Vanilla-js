@@ -12,3 +12,25 @@ function fetchProductsThen() {
       })
       .catch((error) => handleError(error)); // Catch and log any errors
   }
+
+// Task 3: Fetch Products with async/await
+async function fetchProductsAsync() {
+    try {
+      const response = await fetch("https://www.course-api.com/javascript-store-products"); // Fetch product data asynchronously
+      if (!response.ok) { // Check for response errors
+        throw new Error("Network response was not ok");
+      }
+      const products = await response.json(); // Convert the response to JSON format
+      displayProducts(products); // Call the function to display products on the webpage
+    } catch (error) {
+      handleError(error); // Handle errors gracefully
+    }
+  }
+  
+  // Editing format of words in product names
+  function toTitleCase(str) {
+    return str
+      .split(" ") // Split string into words
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter of each word
+      .join(" "); // Join the words back together
+  }
