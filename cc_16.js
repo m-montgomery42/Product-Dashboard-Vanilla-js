@@ -34,3 +34,26 @@ async function fetchProductsAsync() {
       .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter of each word
       .join(" "); // Join the words back together
   }
+
+// Task 4: Display the Products
+function displayProducts(products) {
+    const container = document.getElementById("product-container"); // Select the product container div
+    container.innerHTML = ""; // Clear container before appending new products
+  
+    products.slice(0, 5).forEach((product) => { // Loop through the first 5 products
+      const productElement = document.createElement("div"); // Create a div for each product
+      productElement.classList.add("product"); // Add a class for styling
+  
+      // Modify price by adding a random value between $5 - $15
+      const modifiedPrice = (product.fields.price / 100) + (Math.floor(Math.random() * 11) + 5); 
+  
+      // Set the product HTML content with image, title-cased name, and modified price
+      productElement.innerHTML = `
+        <img src="${product.fields.image[0].url}" alt="${toTitleCase(product.fields.name)}" />
+        <h2>${toTitleCase(product.fields.name)}</h2>
+        <p>$${modifiedPrice.toFixed(2)}</p>
+      `;
+  
+      container.appendChild(productElement); // Append the product element to the container
+    });
+  }
